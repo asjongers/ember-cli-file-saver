@@ -5,17 +5,18 @@ module.exports = {
   name: 'ember-cli-file-saver',
 
   included(app) {
-    this._super.included(app);
+    this.bowerDirectory = app.bowerDirectory;
+    this._super.included.apply(this, app);
 
-    app.import(app.bowerDirectory + '/FileSaver/FileSaver.js', {
+    this.import(this.bowerDirectory + '/FileSaver/FileSaver.js', {
       type: 'vendor'
     });
 
-    app.import('vendor/jquery-ajax-arraybuffer.js', {
+    this.import('vendor/jquery-ajax-arraybuffer.js', {
       type: 'vendor'
     });
 
-    app.import('vendor/file-saver.shim.js', {
+    this.import('vendor/file-saver.shim.js', {
       type: 'vendor',
       exports: {
         rison: ['default']
